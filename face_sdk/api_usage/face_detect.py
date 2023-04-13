@@ -16,7 +16,8 @@ from core.model_loader.face_detection.FaceDetModelLoader import FaceDetModelLoad
 from core.model_handler.face_detection.FaceDetModelHandler import FaceDetModelHandler
 
 with open('config/model_conf.yaml') as f:
-    model_conf = yaml.load(f)
+    # model_conf = yaml.load(f)      # original
+    model_conf = yaml.safe_load(f)   # Bernardo
 
 if __name__ == '__main__':
     # common setting for all model, need not modify.
@@ -48,7 +49,12 @@ if __name__ == '__main__':
         logger.info('Successfully loaded the face detection model!')
 
     # read image
-    image_path = 'api_usage/test_images/test1.jpg'
+    # image_path = 'api_usage/test_images/test1.jpg'                # original
+    # image_path = 'api_usage/test_images/FLORENCE_frame_0208.jpg'  # Bernardo
+    # image_path = 'api_usage/test_images/FLORENCE_frame_0890.jpg'  # Bernardo
+    # image_path = 'api_usage/test_images/LYHM_00008_2C.png'        # Bernardo
+    image_path = 'api_usage/test_images/LYHM_00004_2C.png'          # Bernardo
+
     image = cv2.imread(image_path, cv2.IMREAD_COLOR)
     faceDetModelHandler = FaceDetModelHandler(model, 'cuda:0', cfg)
 
@@ -62,9 +68,11 @@ if __name__ == '__main__':
        logger.info('Successful face detection!')
 
     # gen result
-    save_path_img = 'api_usage/temp/test1_detect_res.jpg'
-    save_path_txt = 'api_usage/temp/test1_detect_res.txt'
-    
+    # save_path_img = 'api_usage/temp/test1_detect_res.jpg'    # original
+    # save_path_txt = 'api_usage/temp/test1_detect_res.txt'    # original
+    save_path_img = 'api_usage/test_images/' + image_path.split('/')[-1].split('.')[0] + '_detect_res.jpg'      # Bernardo
+    save_path_txt = 'api_usage/test_images/' + image_path.split('/')[-1].split('.')[0] + '_detect_res.txt'      # Bernardo
+
     bboxs = dets
     with open(save_path_txt, "w") as fd:
         for box in bboxs:

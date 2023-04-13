@@ -81,7 +81,8 @@ cdef numpy.ndarray[double, ndim=3, mode='c'] render_texture(numpy.ndarray[double
     cdef Py_ssize_t v
     cdef double relate_min
     cdef double relate_max
-    cdef numpy.ndarray[long, ndim=1, mode='c'] tri = numpy.empty((triangles_size_0,), dtype=numpy.long)
+    # cdef numpy.ndarray[long, ndim=1, mode='c'] tri = numpy.empty((triangles_size_0,), dtype=numpy.long)   # original
+    cdef numpy.ndarray[long, ndim=1, mode='c'] tri = numpy.empty((triangles_size_0,), dtype=long)           # Bernardo
     cdef Py_ssize_t c_channel_ptr
     cdef numpy.ndarray[double, ndim=2, mode='c'] vertices_idx_by_tri = numpy.empty((2, triangles_size_0), dtype=numpy.double)
     cdef bint ifisPointInTri
