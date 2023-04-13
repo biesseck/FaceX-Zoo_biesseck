@@ -1,11 +1,11 @@
-# COMPILE "render.pyx"
+# COMPILE "render.pyx" (Bernardo)
 ```
 cd FaceX-Zoo_biesseck/addition_module/face_mask_adding/FMA-3D/utils/cython
 python setup.py build_ext -i
 ```
 
 
-# PIPELINE TO SYNTHETICALLY ADD MASK TO ONE IMAGE FACE
+# PIPELINE TO SYNTHETICALLY ADD MASK TO ONE IMAGE FACE (Bernardo)
 
 ### 1) Detect face and landmarks
 ```
